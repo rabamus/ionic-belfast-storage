@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      New Todo Item
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-input type="text" value="" [(ngModel)]="todo.description"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Due Date</ion-label>
+      <ion-datetime [(ngModel)]="todo.due"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-fab bottom right>
+    <button ion-fab color="secondary" (click)="createTodoAndReturn()">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

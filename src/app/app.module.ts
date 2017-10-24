@@ -4,13 +4,17 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
+import { MyApp } from './app.component';
+import { SinglePage } from '../pages/single/single';
+
+import { Todos } from '../providers/todos';
 
 @NgModule({
   declarations: [
     ListPage,
     MyApp,
+    SinglePage,
   ],
   imports: [
     BrowserModule,
@@ -20,10 +24,12 @@ import { ListPage } from '../pages/list/list';
   entryComponents: [
     ListPage,
     MyApp,
+    SinglePage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Todos,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

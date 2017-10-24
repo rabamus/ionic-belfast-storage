@@ -6,9 +6,35 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-list>
+    <ion-item-sliding *ngFor="let todo of todos">
+      <ion-item>
+        <h2 [style.opacity]="todo.done ? 0.5 : 1">{{ todo.description }}</h2>
+        <p [style.opacity]="todo.done ? 0.5 : 1">{{ todo.getDueString() }}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" *ngIf="!todo.done" (click)="setDone(todo, true)">
+          <ion-icon name="checkmark"></ion-icon>
+          Done
+        </button>
+        <button ion-button color="primary" *ngIf="todo.done" (click)="setDone(todo, false)">
+          <ion-icon name="undo"></ion-icon>
+          Undo
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button color="danger">
+          <ion-icon name="remove-circle"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="showCreate()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
