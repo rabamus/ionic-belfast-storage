@@ -19,12 +19,12 @@ export class SinglePage {
         this.todo = new Todo();
     }
 
-    public createTodoAndReturn() {
-        let todos = this.todos.getItems();
+    public async createTodoAndReturn() {
+        let todos = await this.todos.getItems();
 
         todos.push(this.todo);
         
-        this.todos.setItems(todos);
+        await this.todos.setItems(todos);
 
         this.navCtrl.pop();
     }

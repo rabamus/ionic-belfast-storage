@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 import { Todo } from '../models/todo';
 
@@ -8,7 +9,7 @@ export class Todos {
     private items: Todo[];
 
     constructor(
-
+        private storage: Storage,
     ) {
         
     }
@@ -30,13 +31,26 @@ export class Todos {
         this.items = [item1, item2, item3];
     }
 
-    public getItems(): Todo[] {
-        if (!this.items) this.createSampleItems();
+    public async getItems(): Todo[] {
+        let objects = await this.storage.get('todos');
+        let items: Todo[] = [];
+
+        if (!objects) objects = [];
+
+        for (let object of objects) {
+            items.push(Todo.createFromObject(object));
+        }
+
+        this.items = items;
+
+        if (this.items.length == 0) this.createSampleItems();
+
         return this.items;
     }
 
-    public setItems(items: Todo[]) {
+    public async setItems(items: Todo[]) {
         this.items = items;
+        await this.storage.set('todos', this.items);
     }
 
 }

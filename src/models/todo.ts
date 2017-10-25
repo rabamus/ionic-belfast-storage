@@ -69,4 +69,14 @@ export class Todo {
         return day + ', ' + date + ' ' + month + ' ' + year;
     }
 
+    public static createFromObject(object: Todo) {
+        let todo = new Todo();
+
+        todo.description = object.description;
+        todo.done = object.done;
+        todo.due = object._due;
+
+        return todo;
+    }
+
 }

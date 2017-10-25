@@ -23,14 +23,14 @@ export class ListPage {
 
     }
 
-    public ionViewWillEnter() {
-        this.todos = this.todosProvider.getItems();
+    public async ionViewWillEnter() {
+        this.todos = await this.todosProvider.getItems();
     }
 
-    public setDone(todo: Todo, value: boolean) {
+    public async setDone(todo: Todo, value: boolean) {
         todo.done = value;
 
-        this.todosProvider.setItems(this.todos);
+        await this.todosProvider.setItems(this.todos);
         
         this.list.closeSlidingItems();
     }
